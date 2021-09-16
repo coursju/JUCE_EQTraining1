@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="eARhtX" name="EqTraining" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
+              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
+              cppLanguageStandard="17">
   <MAINGROUP id="PDycvd" name="EqTraining">
     <GROUP id="{E55FB9FA-8C83-33B0-5E51-AB15C8CB0D7F}" name="Source">
       <FILE id="MWZtzX" name="PluginProcessor.cpp" compile="1" resource="0"
