@@ -101,7 +101,7 @@ void EqTrainingAudioProcessor::prepareToPlay (double sampleRate, int samplesPerB
     leftChain.prepare(spec);
     rightChain.prepare(spec);
     
-    auto chainSettings  = getChainSettings(apvts);
+    auto chainSettings  = getChainSettings(*apvts);
     
     auto peakCoefficients =
     juce::dsp::IIR::Coefficients<float>::makePeakFilter(sampleRate,
@@ -157,7 +157,7 @@ void EqTrainingAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, j
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
 
-    auto chainSettings  = getChainSettings(apvts);
+    auto chainSettings  = getChainSettings(*apvts);
     auto peakCoefficients =
     juce::dsp::IIR::Coefficients<float>::makePeakFilter(getSampleRate(),
                                                         chainSettings.peakFreq,

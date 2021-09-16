@@ -68,8 +68,9 @@ public:
     
     static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
     
-    juce::AudioProcessorValueTreeState apvts {*this, nullptr, "Parameters", createParameterLayout()};
-    
+//    juce::AudioProcessorValueTreeState apvts {*this, nullptr, "Parameters", createParameterLayout()};
+    juce::AudioProcessorValueTreeState* apvts = new juce::AudioProcessorValueTreeState(*this, nullptr, "Parameters", createParameterLayout());
+
 private:
     
     using Filter = juce::dsp::IIR::Filter<float>;
