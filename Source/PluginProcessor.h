@@ -77,7 +77,6 @@ public:
 //    juce::AudioProcessorValueTreeState apvts {*this, nullptr, "Parameters", createParameterLayout()};
     juce::AudioProcessorValueTreeState* apvts = new juce::AudioProcessorValueTreeState(*this, nullptr, "Parameters", createParameterLayout());
 
-    void configureFilter();
 
     
 private:
@@ -94,6 +93,9 @@ private:
         Peak,
         HighCut
     };
+        
+    void configureFilter();
+
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EqTrainingAudioProcessor)
 };
