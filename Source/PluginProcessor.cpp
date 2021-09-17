@@ -172,11 +172,30 @@ juce::AudioProcessorEditor* EqTrainingAudioProcessor::createEditor()
 //==============================================================================
 void EqTrainingAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
 {
+    auto state = apvts->copyState();
+    std::unique_ptr<juce::XmlElement> xml (state.createXml());
+    copyXmlToBinary (*xml, destData);
+    
+//    juce::MemoryOutputStream mos(destData, true);
+//    apvts->state.writeToStream(mos);
 }
 
 void EqTrainingAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
+    std::unique_ptr<juce::XmlElement> xmlState (getXmlFromBinary (data, sizeInBytes));
+
+    if (xmlState.get() != nullptr)
+        if (xmlState->hasTagName (apvts->state.getType()))
+            apvts->replaceState (juce::ValueTree::fromXml (*xmlState));
+    configureFilter();
     
+//    auto tree = juce::ValueTree::readFromData(data, sizeInBytes);
+//    if( tree.isValid() )
+//    {
+//        apvts->replaceState(tree);
+//        configureFilter();
+//        
+//    }
 }
 
 //==============================================================================
@@ -439,3 +458,5 @@ void EqTrainingAudioProcessor::configureFilter()
         }
     
 }
+
+juce::AudioProcessorValueTreeState* EqTrainingAudioProcessor::getApvts(){return apvts;}

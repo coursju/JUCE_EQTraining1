@@ -73,13 +73,13 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
     
     static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
-    
-//    juce::AudioProcessorValueTreeState apvts {*this, nullptr, "Parameters", createParameterLayout()};
-    juce::AudioProcessorValueTreeState* apvts = new juce::AudioProcessorValueTreeState(*this, nullptr, "Parameters", createParameterLayout());
 
+    juce::AudioProcessorValueTreeState* getApvts();
 
-    
 private:
+    
+    //    juce::AudioProcessorValueTreeState apvts {*this, nullptr, "Parameters", createParameterLayout()};
+    juce::AudioProcessorValueTreeState* apvts = new juce::AudioProcessorValueTreeState(*this, nullptr, "Parameters", createParameterLayout());
     
     using Filter = juce::dsp::IIR::Filter<float>;
     using CutFilter = juce::dsp::ProcessorChain<Filter, Filter, Filter, Filter>;
